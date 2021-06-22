@@ -7,6 +7,9 @@
 #include <chrono>
 #include <pthread.h>
 
+pthread_mutex_t count_mutex;
+pthread_cond_t  count_threshold_cv;
+
 int main(int argc, char** argv) {
   using std::chrono::high_resolution_clock;
 //   Message say_hello("Hello, CMake World!");

@@ -22,13 +22,13 @@ class CollectionBarrier {
  public:
   explicit CollectionBarrier(Heap* heap) : heap_(heap) {}
 
-  // Returns true when collection was requested.
+  // 用来判断是否被请求gc了。Returns true when collection was requested.
   bool WasGCRequested();
 
-  // Requests a GC from the main thread.
+  // 主线程用此方法触发GC。Requests a GC from the main thread.
   void RequestGC();
 
-  // Resumes all threads waiting for GC when tear down starts.
+  // 恢复所有正在等待GC的线程。Resumes all threads waiting for GC when tear down starts.
   void NotifyShutdownRequested();
 
   // Stops the TimeToCollection timer when starting the GC.
@@ -41,7 +41,7 @@ class CollectionBarrier {
   bool AwaitCollectionBackground(LocalHeap* local_heap);
 
  private:
-  // Activate stack guards and posting a task to perform the GC.
+  // 激活stack guard并post一个task执行gc。Activate stack guards and posting a task to perform the GC.
   void ActivateStackGuardAndPostTask();
 
   Heap* heap_;
